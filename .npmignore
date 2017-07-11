@@ -1,0 +1,13 @@
+.vscode/
+out/test-integration/
+src/
+test-integration/
+.gitattributes
+.gitignore
+.npmignore
+.vscodeignore
+CONTRIBUTING.md
+gulpfile.js
+tsconfig.json
+tslint.json
+**/*.map
