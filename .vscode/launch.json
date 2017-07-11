@@ -1,0 +1,27 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch Test Application",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceRoot}/out/test-integration/testapp.js",
+			"stopOnEntry": false,
+			"args": [],
+			"cwd": "${workspaceRoot}",
+			"preLaunchTask": "build",
+			"runtimeExecutable": null,
+			"runtimeArgs": [
+				"--nolazy"
+			],
+			"env": {
+				"NODE_ENV": "development"
+			},
+			"console":"externalTerminal",
+			"sourceMaps": true,
+            "outFiles": [
+                "${workspaceRoot}/out/test-integration/**/*"
+            ]
+		}
+	]
+}
