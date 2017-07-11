@@ -1,0 +1,13 @@
+.vscode/**
+typings/**
+out/test/**
+out/test-integration/**
+out/results/**
+test/**
+test-integration/**
+src/**
+**/*.map
+.gitignore
+tsconfig.json
+gulpfile.js
+tslint.json

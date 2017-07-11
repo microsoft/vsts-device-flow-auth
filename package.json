@@ -1,0 +1,43 @@
+{
+  "name": "vsts-device-flow-auth",
+  "version": "0.0.1",
+  "description": "Device Flow authentication package for Visual Studio Team Services",
+  "keywords": [
+    "vsts",
+    "visual studio team services",
+    "device flow",
+    "authentication"
+  ],
+  "main": "out/src/deviceflow.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/vsts-device-flow-auth.git"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "bugs": {
+    "url": "https://github.com/Microsoft/vsts-device-flow-auth/issues"
+  },
+  "homepage": "https://github.com/Microsoft/vsts-device-flow-auth/blob/master/README.md",
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "dependencies": {
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.31",
+    "@types/request": "0.0.44",
+    "@types/request-promise-native": "^1.0.5",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-tslint": "^8.1.1",
+    "gulp-typescript": "^3.1.7",
+    "gulp-util": "^3.0.8",
+    "tslint": "^5.4.3",
+    "typescript": "^2.3.4"
+  }
+}
