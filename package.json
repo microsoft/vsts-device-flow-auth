@@ -9,8 +9,7 @@
     "authentication"
   ],
   "main": "out/src/deviceflow.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/Microsoft/vsts-device-flow-auth.git"
@@ -37,6 +36,7 @@
     "gulp-tslint": "^8.1.1",
     "gulp-typescript": "^3.1.7",
     "gulp-util": "^3.0.8",
+    "merge2": "^1.1.0",
     "tslint": "^5.4.3",
     "typescript": "^2.3.4"
   }

@@ -8,6 +8,7 @@ var typescript = require('gulp-typescript');
 var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
 var path = require('path');
+var merge = require('merge2');
 
 function errorHandler(err) {
     console.error(err.message);
@@ -25,15 +26,15 @@ gulp.task('build', ['clean'], function () {
         .pipe(tsProject())
         .on('error', errorHandler);
 
-    return tsResult.js
-        .pipe(sourcemaps.write('.', {
+    return merge([ // Merge the two output streams, so this task is finished when the IO of both operations is done.
+        tsResult.dts.pipe(gulp.dest('./out')),
+        tsResult.js.pipe(sourcemaps.write('.', {
             sourceRoot: function (file) {
                 // This override is needed because of a bug in sourcemaps base logic.
                 // "file.base"" is the out dir where all the js and map files are located.
                 return file.base;
             }
-        }))
-        .pipe(gulp.dest('./out'));
+        })).pipe(gulp.dest('./out'))]);
 });
 
 gulp.task('tslint', ['build'], function () {
