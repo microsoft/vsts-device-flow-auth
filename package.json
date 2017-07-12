@@ -1,6 +1,6 @@
 {
   "name": "vsts-device-flow-auth",
-  "version": "0.0.3",
+  "version": "1.121.0",
   "description": "Device Flow authentication package for Visual Studio Team Services",
   "keywords": [
     "vsts",
