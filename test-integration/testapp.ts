@@ -9,7 +9,7 @@ import * as os from 'os';
 import { DeviceFlowAuthenticator, DeviceFlowDetails, IDeviceFlowAuthenticationOptions, IDeviceFlowTokenOptions } from '../src/deviceflow';
 
 async function run() {
-    const resourceUri: string = `https://my-corporate-account.visualstudio.com`; //AAD-backed account
+    const resourceUri: string = `https://<some-aad-account>.visualstudio.com`; //AAD-backed account
     //const resourceUri: string = `https://my-personal-account.visualstudio.com`; //MSA-backed account
 
     try {

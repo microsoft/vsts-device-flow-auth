@@ -232,8 +232,8 @@ export class DeviceFlowAuthenticator {
             });
     }
 
-    //Get the tenantId via a HEAD request to the resourceUri. We expect a 401 so
-    //we can get the x-vss-resourcetenant response header that contains the tenant id.
+    //Get the tenantId via a HEAD request to the resourceUri. We don't care about the statusCode so we
+    //handle the response in both accepted and rejected cases then throw if x-vss-resourcetenant is null
     //For an MSA backed account, tenantId is an empty guid
     private async getTenantId(): Promise<string> {
         const headOptions: any = {
@@ -241,13 +241,16 @@ export class DeviceFlowAuthenticator {
             headers: this.getUserAgentHeaders
         };
         return request.head(headOptions).then((body) => {
-                throw new Error(`Did not receive the expected 401 when requesting the tenant id for ${this.resourceUri}. Body: ${body}`);
-            }).catch((err) => {
-                //We expect a 401 so we can get the response header we need to get the tenant id
-                if (err.statusCode === 401) {
-                    return err.response[`x-vss-resourcetenant`];
+                if (body.response['x-vss-resourcetenant']) {
+                    return body.response['x-vss-resourcetenant'];
                 } else {
-                    throw err;
+                    throw new Error(`Did not receive tenant id ${this.resourceUri}. Body: ${body}`);
+                }
+            }).catch((err) => {
+                if (err.response['x-vss-resourcetenant']) {
+                    return err.response['x-vss-resourcetenant'];
+                } else {
+                    throw new Error(`Did not receive tenant id ${this.resourceUri}. Body: ${err}`);
                 }
             });
     }
