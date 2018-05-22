@@ -240,19 +240,33 @@ export class DeviceFlowAuthenticator {
             url: this.resourceUri,
             headers: this.getUserAgentHeaders
         };
-        return request.head(headOptions).then((body) => {
-                if (body.response['x-vss-resourcetenant']) {
-                    return body.response['x-vss-resourcetenant'];
-                } else {
-                    throw new Error(`Did not receive tenant id from ${this.resourceUri}. Body: ${body}`);
+
+        let resourceTenant: string;
+        let tenantId: string;
+
+        try {
+            const body: any = await request.head(headOptions);
+            resourceTenant = body.response['x-vss-resourcetenant'];
+        } catch (error) {
+            resourceTenant = error.response['x-vss-resourcetenant'];
+        }
+
+        if (resourceTenant) {
+            const tenantIds: string[] = resourceTenant.split(',');
+            if (tenantIds.length > 1) {
+                for (const id of tenantIds) {
+                    if (id !== "00000000-0000-0000-0000-000000000000") {
+                        tenantId = id;
+                    }
                 }
-            }).catch((err) => {
-                if (err.response['x-vss-resourcetenant']) {
-                    return err.response['x-vss-resourcetenant'];
-                } else {
-                    throw new Error(`Did not receive tenant id from ${this.resourceUri}. Body: ${err}`);
-                }
-            });
+            } else {
+                tenantId = tenantIds[0];
+            }
+        } else {
+            throw new  Error(`Did not receive tenant id from ${this.resourceUri}`);
+        }
+
+        return tenantId.trim();
     }
 
     //Returns a Promise that is resolved after ms milliseconds
