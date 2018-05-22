@@ -244,13 +244,13 @@ export class DeviceFlowAuthenticator {
                 if (body.response['x-vss-resourcetenant']) {
                     return body.response['x-vss-resourcetenant'];
                 } else {
-                    throw new Error(`Did not receive tenant id ${this.resourceUri}. Body: ${body}`);
+                    throw new Error(`Did not receive tenant id from ${this.resourceUri}. Body: ${body}`);
                 }
             }).catch((err) => {
                 if (err.response['x-vss-resourcetenant']) {
                     return err.response['x-vss-resourcetenant'];
                 } else {
-                    throw new Error(`Did not receive tenant id ${this.resourceUri}. Body: ${err}`);
+                    throw new Error(`Did not receive tenant id from ${this.resourceUri}. Body: ${err}`);
                 }
             });
     }
